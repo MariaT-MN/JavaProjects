@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class RockPaperScissors {
-    public static void main(String[] args) {
+    public static void main(String args[]) {
         Scanner playStart;
         Scanner userPick;
         Scanner endGame;
@@ -9,8 +9,6 @@ public class RockPaperScissors {
         String endDecision;
         int userChoice;
         int opponentChoice;
-        int userScore = 0;
-        int opponentScore = 0;
 
         playStart = new Scanner(System.in);
         System.out.println("Would you like to play Rock Paper Scissors? Y or N");
@@ -18,24 +16,26 @@ public class RockPaperScissors {
         String userChoiceGame = playStart.nextLine();
 
         if (userChoiceGame.equals("y") || userChoiceGame.equals("Y")){
-            System.out.println("Starting Game - 3 rounds");
-            do {
+            System.out.println("Starting Game...");
+            while (true) {
                 //asks user for choice in RPS
                 userPick = new Scanner(System.in);
-                System.out.println("Enter your choice:\n" +
-                        "1. Rock\n" +
-                        "2. Paper\n" +
-                        "3. Scissors");
+                System.out.println("""
+                        Enter your choice:
+                        1. Rock
+                        2. Paper
+                        3. Scissors""");
 
                 userChoice = userPick.nextInt();
 
-                opponentChoice = (int)(Math.random() * 2);
-                //runs random generator for opponent
+                Random randNum = new Random(); //creates a new instance of random class
+                opponentChoice = randNum.nextInt(1, 3);
+                //runs random number for opponent between 1-3
 
                 roundDecision(userChoice,opponentChoice);
                 //compares user's choice and opponent then score is added
-                //if score is > 2 then game ends else...
-                //asks if wants to play again
+
+                //asks if user wants to play again
                 endGame = new Scanner(System.in);
                 System.out.println("Would you like to play again? Y or N");
                 endDecision = endGame.nextLine();
@@ -44,8 +44,7 @@ public class RockPaperScissors {
                     System.out.println("Exiting...");
                     break;
                 }
-
-            } while (true);
+            }
         }
         else if (userChoiceGame.equals("n") || userChoiceGame.equals("N")) {
             System.out.println("Exiting...");
@@ -59,13 +58,34 @@ public class RockPaperScissors {
     private static void roundDecision(int userChoice, int opponentChoice){
         switch (userChoice){
             case 1:
+                if(userChoice == opponentChoice) {
+                    System.out.println("You both picked " + userChoice + " ... Try again");
+                } else if (opponentChoice == 2) {
+                    System.out.println("You lose. Opponent picked " + opponentChoice);
+                } else {
+                    System.out.println("You win! Opponent picked " + opponentChoice);
+                }
                 break;
             case 2:
+                if(userChoice == opponentChoice){
+                    System.out.println("You both picked " + userChoice + " ... Try again");
+                } else if (opponentChoice == 3) {
+                    System.out.println("You lose. Opponent picked " + opponentChoice);
+                } else {
+                    System.out.println("You win! Opponent picked " + opponentChoice);
+                }
                 break;
             case 3:
+                if(userChoice == opponentChoice){
+                    System.out.println("You both picked " + userChoice + " ... Try again");
+                } else if (opponentChoice == 1) {
+                    System.out.println("You lose. Opponent picked " + opponentChoice);
+                } else {
+                    System.out.println("You win! Opponent picked " + opponentChoice);
+                }
                 break;
-            case 4:
-                break;
+            default:
+                System.out.println("Enter in valid answer");
         }
     }
 }
