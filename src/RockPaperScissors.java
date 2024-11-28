@@ -29,10 +29,14 @@ public class RockPaperScissors {
                 userChoice = userPick.nextInt();
 
                 Random randNum = new Random(); //creates a new instance of random class
-                opponentChoice = randNum.nextInt(1, 3);
+                opponentChoice = randNum.nextInt(1, 4);
                 //runs random number for opponent between 1-3
 
-                roundDecision(userChoice,opponentChoice);
+                if (userChoice > 0 && userChoice < 4){
+                    roundDecision(userChoice,opponentChoice);
+                } else {
+                    System.out.println("Enter Valid Answer...");
+                }
                 //compares user's choice and opponent then score is added
 
                 //asks if user wants to play again
@@ -59,29 +63,29 @@ public class RockPaperScissors {
         switch (userChoice){
             case 1:
                 if(userChoice == opponentChoice) {
-                    System.out.println("You both picked " + userChoice + " ... Try again");
+                    System.out.println("You both picked Rock ... Try again");
                 } else if (opponentChoice == 2) {
-                    System.out.println("You lose. Opponent picked " + opponentChoice);
+                    System.out.println("You lose. Opponent picked Paper");
                 } else {
-                    System.out.println("You win! Opponent picked " + opponentChoice);
+                    System.out.println("You win! Opponent picked Scissors");
                 }
                 break;
             case 2:
                 if(userChoice == opponentChoice){
-                    System.out.println("You both picked " + userChoice + " ... Try again");
+                    System.out.println("You both picked Paper ... Try again");
                 } else if (opponentChoice == 3) {
-                    System.out.println("You lose. Opponent picked " + opponentChoice);
+                    System.out.println("You lose. Opponent picked Scissors");
                 } else {
-                    System.out.println("You win! Opponent picked " + opponentChoice);
+                    System.out.println("You win! Opponent picked Rock");
                 }
                 break;
             case 3:
                 if(userChoice == opponentChoice){
-                    System.out.println("You both picked " + userChoice + " ... Try again");
+                    System.out.println("You both picked Scissors ... Try again");
                 } else if (opponentChoice == 1) {
-                    System.out.println("You lose. Opponent picked " + opponentChoice);
+                    System.out.println("You lose. Opponent picked Rock");
                 } else {
-                    System.out.println("You win! Opponent picked " + opponentChoice);
+                    System.out.println("You win! Opponent picked Paper");
                 }
                 break;
             default:
